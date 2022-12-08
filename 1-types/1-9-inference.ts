@@ -1,4 +1,5 @@
-/**
+{
+    /**
  * Type Inference
  */
 
@@ -16,4 +17,4 @@ function add(x: number, y: number){
 
 const result = add (1, 2); // no need to put the type beside result, because it already assigned in add. result should be number
 // const result1 = add (a, b); // I can only send number, string can't be sent
-
+}

@@ -1,6 +1,6 @@
 {
     /**
-     * Intersection Types: &
+     * Intersection Types: & (and)
      */
     type Student = {
         name: string;

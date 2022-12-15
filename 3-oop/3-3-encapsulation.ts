@@ -19,9 +19,9 @@
             return new CoffeeMaker(coffeeBenas);
         }
 
-        fillCoffeeBeans(beans: number){ // 따로 작성하지 않으면 public
-            if(beans < 0) {
-                throw new Error('value for beans should be greater than 0'); 
+        fillCoffeeBeans(beans: number) { // 따로 작성하지 않으면 public
+            if (beans < 0) {
+                throw new Error('value for beans should be greater than 0');
             }
             this.coffeeBeans += beans;
         }
@@ -41,10 +41,32 @@
     const maker = CoffeeMaker.makeMachine(32);
     maker.fillCoffeeBeans(30);
     console.log(maker);
+
     // before private, it can be assigned
     // const maker = new CoffeeMaker(32); // 생성자(constructor) 호출 
     // maker.coffeeBeans = 3;
     // maker.coffeeBeans = -3; // invalid
+    class User {
 
+        get fullName(): string {
+            return `${this.firstName} ${this.lastName}`;
+        }
+        private internalAge = 4;
+        get age(): number {
+            return this.internalAge;
+        }
+        set age(inputAge:number) {
+            if (inputAge < 0) {
+                throw new Error ('inputAge should be greater than 0');
+            }
+            this.internalAge = inputAge;
+        }
+        constructor(private firstName: string, private lastName: string) {
+        }
+    }
+
+    const user = new User('Steve', 'Jobs');
+    user.age = 6; // internalAge = private이라 접근 X, but age (setter) = 접근 가능
+    console.log(user.age);
+    console.log(user.fullName);
 }
-

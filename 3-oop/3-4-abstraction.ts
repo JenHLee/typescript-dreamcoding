@@ -6,13 +6,23 @@
 
     // 의사소통을 하기위해서 지켜야하는 계약서 같은 역할 (추상화를 극대화하여 사용할 수 있음)
     // 인터페이스에 적어놓은 것은 클래스에서 무조건 구현해야함
+
+    // 접근제어자 (정보은닉:encapsulation)으로 추상화 가능 -> 필요한 함수만 노출 제어 private, protected, public
+    // 인터페이스로 추상화 가능
+    // 추상화된 클래스는 더욱 편리
     interface CoffeeMaker {
         makeCoffee(shots: number): CoffeeCup;
     }
 
+    interface CommercialCoffeeMaker {
+        makeCoffee(shots: number): CoffeeCup;
+        fillCoffeeBeans(beans: number): void;
+        clean(): void;
+    }
+
     // CoffeeMachine 클래스는 CoffeeMaker 인터페이스를 implements하고 있기때문에 같은거라고 볼 수 있으나 
     // 차이는 interface와 가지고 있는 메소드가 다름
-    class CoffeeMachine implements CoffeeMaker {
+    class CoffeeMachine implements CoffeeMaker, CommercialCoffeeMaker {
         private static BEANS_GRAM_PER_SHOT: number = 7; // class level 변하지 않는 숫자
         protected coffeeBeans: number = 0; // instacne (object) level 
 
@@ -31,7 +41,11 @@
             this.coffeeBeans += beans;
         }
 
-        grindBeans(shots: number) {
+        clean() {
+            console.log('cleaning the machine...🧼');
+        }
+
+        private grindBeans(shots: number) {
             console.log(`grinding beans for ${shots}`);
             if (this.coffeeBeans < shots * CoffeeMachine.BEANS_GRAM_PER_SHOT) {
                 throw new Error('Not enough coffee beans!');
@@ -63,17 +77,31 @@
         }
     }
 
-    const maker: CoffeeMachine = CoffeeMachine.makeMachine(32);
-    maker.fillCoffeeBeans(30);
-    maker.makeCoffee(2);
-    console.log(maker);
-   
-    const maker1: CoffeeMaker = CoffeeMachine.makeMachine(32);
-    // maker1.fillCoffeeBeans(30); // CoffeeMaker 인터페이스 안에는 fillCoffeeBeans라는 method가 존재하지 않으므로 사용 불가
-    maker1.makeCoffee(2);
-    console.log(maker1);
+    class AmatuerUser {
+        constructor(private machine: CoffeeMaker) { }
+        makeCoffee() {
+            const coffee = this.machine.makeCoffee(2);
+            console.log('----------AmatureUser---------');
+            console.log(coffee);
+        }
+    }
 
-    // 접근제어자 (정보은닉:encapsulation)으로 추상화 가능 -> 필요한 함수만 노출 제어 private, protected, public
-    // 인터페이스로 추상화 가능
-    // 추상화된 클래스는 더욱 편리
+    class ProBarista {
+        constructor(private machine: CommercialCoffeeMaker) { }
+        makeCoffee() {
+            const coffee = this.machine.makeCoffee(2);
+            console.log('----------ProBarista---------');
+            console.log(coffee);
+            this.machine.fillCoffeeBeans(45);
+            this.machine.clean();
+        }
+    }
+
+    const maker: CoffeeMachine = CoffeeMachine.makeMachine(32);
+    const amature = new AmatuerUser(maker);
+    const pro = new ProBarista(maker);
+    amature.makeCoffee();
+    pro.makeCoffee();
+
+
 }

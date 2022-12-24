@@ -82,5 +82,6 @@
     const latteMachine = new CaffeLatteMachine(23, 'SSSS');
     const coffee = latteMachine.makeCoffee(1);
     console.log(coffee);
+    console.log(machine);
     console.log('Serial Number: ' + latteMachine.serialNumber);
 }

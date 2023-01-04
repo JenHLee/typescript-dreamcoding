@@ -30,7 +30,7 @@ function calculate(method: string, num1: number, num2: number) {
     }
 }
 
-// Dream Answer
+// Dream-coding Answer
 type Command = 'add' | 'substract' | 'multiply' | 'divide' | 'remainder'; // union
 function calculate1(command:Command, a: number, b: number) {
     switch (command) {

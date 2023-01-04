@@ -1,6 +1,6 @@
 {
     /**
-     * Type Aliases
+     * Type Aliases Example
      */
     type Text = string;
     const firstName: string = 'jennie';

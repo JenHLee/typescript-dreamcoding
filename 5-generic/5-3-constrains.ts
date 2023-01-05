@@ -44,3 +44,22 @@ bob.workPartTime();
 // 이를 예방하기위해 pay함수처럼 generic을 이용함 ✨✨✨
 const jennieAfterPay = payBad(jennie) as FullTimeEmployee; 
 const bobAfterPay = payBad(bob) as PartTimeEmployee;
+
+const obj = {
+    name: 'jennie',
+    age: 20,
+};
+
+const obj2 = {
+    animal: '🐶',
+};
+
+
+console.log(getValue(obj, 'name')); // jennie
+console.log(getValue(obj, 'age')); // 20
+console.log(getValue(obj2, 'animal')); // 🐶
+
+function getValue<T, K extends keyof T>(obj: T, key: K): T[K] {
+    return obj[key];
+}
+

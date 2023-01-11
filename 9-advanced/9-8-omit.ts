@@ -9,7 +9,7 @@
 
     type VideoMetaData = Omit<Video, 'url' | 'data'>;
 
-    function getVideo(id: string): Video {
+    function getVideo1(id: string): Video {
         return {
             id,
             title: 'video',
@@ -18,7 +18,7 @@
         }
     }
 
-    function getVideoMetaData(id: string): VideoMetaData {
+    function getVideoMetaData1(id: string): VideoMetaData {
         return {
             id: id,
             title: 'title',

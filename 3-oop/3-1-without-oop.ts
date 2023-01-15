@@ -1,5 +1,5 @@
 {
-    // 3-1-without-oop.ts
+    // 3-1-without-oop.ts-dream coding
     const BEANS_GRAM_PER_SHOT:number = 7; 
     let coffeeBeans: number = 0;
     type CoffeeCup = {

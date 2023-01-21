@@ -1,3 +1,4 @@
+// Stack
 interface Stack {
     readonly size: number; // change X
     push(value: string): void;

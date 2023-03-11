@@ -2,7 +2,7 @@
     /**
      * JavaScript
      * Primitive(simple type): number, string, boolena, bigint, symbol, null, undefined
-     * Object(complicated type): function, array.....
+     * Object(complicated type): function, array...
      */
 
     // number
